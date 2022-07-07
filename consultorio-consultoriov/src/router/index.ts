@@ -87,7 +87,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "paciente-editar",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Editar/PacienteEditarView.vue"
+        /* webpackChunkName: "about" */ "../views/Editar/EditarPacienteView.vue"
       ),
   },
   {
@@ -98,6 +98,35 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "form" */ "../views/Detail/DetailPaciente.vue"
       ),
+  },
+  {
+    path: "/medico",
+    name: "medico",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MedicoView.vue"),
+  },
+  {
+    path: "/medico/cadastrar",
+    name: "medico-cadastrar",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Cadastros/MedicoCad.vue"
+      ),
+  },
+  {
+    path: "/medico/formulario/:model/:id",
+    name: "medico-editar",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Editar/MedicoEditarView.vue"
+      ),
+  },
+  {
+    path: "/medico/formulario/:model/:id",
+    name: "medico-detalhar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(/* webpackChunkName: "form" */ "../views/Detail/DetailMedico.vue"),
   },
 ];
 
