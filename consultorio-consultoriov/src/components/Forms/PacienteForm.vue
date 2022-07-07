@@ -90,6 +90,7 @@
         class="input nCartao is-success"
         type="text"
         placeholder="Nº do Cartão"
+        v-model="paciente.numeroCartaoConvenio"
       />
     </div>
     <div class="field">
@@ -103,20 +104,13 @@
         </div>
       </div>
     </div>
-    <div class="field">
-      <div class="control">
-        <label class="label">Convenio</label>
-        <div class="select is-rounded is-primary">
-          <select
-            v-for="item in convenioList"
-            :key="item.id"
-            aria-placeholder="sexo"
-            v-model="paciente.convenio"
-          >
-            <option placeholder="{{item.nome}}">{{ item.id }}</option>
-          </select>
-        </div>
-      </div>
+    <div class="control">
+      <input
+        class="input convenio is-success"
+        type="number"
+        placeholder="Convenio"
+        v-model="paciente.convenio"
+      />
     </div>
     <div class="control">
       <input

@@ -1,30 +1,23 @@
 <template>
-   <div class="Paciente">
-    <div class="columns">
-         <div class="column">
-            <h1 class="title is-1">Pacientes</h1>
-        </div>
-    </div>
-    <div class="columns">
-        <div class="column">
-            <router-link to="/paciente/cadastrar"><button class="button is-primary is-rounded">Cadastrar Paciente</button></router-link>
-        </div>
-    </div>
-    <div class="columns">
-         <div class="column">
-            <button class="button is-link btn">Buscar Paciente</button>
-        </div>
-    </div>
-     <div class="columns">
-         <div class="column">
-             <PacienteTable/>
-        </div>
+  <div class="columns">
+    <div class="column is-12 is-size-3">Lista de Pacientes</div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <router-link to="/paciente/cadastrar"
+        ><button class="button is-primary is-rounded">
+          Cadastrar Paciente
+        </button></router-link
+      >
     </div>
   </div>
+  <PacienteTable />
 </template>
+
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import PacienteTable from '@/components/Tables/PacienteTable.vue';
+import { Options, Vue } from "vue-class-component";
+import PacienteTable from "@/components/Tables/PacienteTable.vue";
 
 @Options({
   components: {
@@ -33,5 +26,4 @@ import PacienteTable from '@/components/Tables/PacienteTable.vue';
 })
 export default class PacienteView extends Vue {}
 </script>
-<style lang="scss">
-</style>
+<style lang="scss"></style>

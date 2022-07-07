@@ -13,8 +13,13 @@
     <tbody>
       <tr class="has-text-left" v-for="item in pacienteList" :key="item.id">
         <th>
-          <router-link to="/paciente/editar"
-            ><button class="button is-info">Info</button></router-link
+          <router-link to="/paciente/detalhar"
+            ><button
+              class="button is-info"
+              @click="onClickPaginaDetalhar(item.id)"
+            >
+              Info
+            </button></router-link
           >
         </th>
         <th>{{ item.nome }}</th>
@@ -41,9 +46,9 @@ export default class PacienteTable extends Vue {
 
   public mounted(): void {
     this.pacienteClient = new PacienteClient();
-    this.listarEspecialidade();
+    this.listarPaciente();
   }
-  private listarEspecialidade(): void {
+  private listarPaciente(): void {
     this.pacienteClient.findByFiltrosPaginado(this.pageRequest).then(
       (success) => {
         this.pageResponse = success;
@@ -51,6 +56,12 @@ export default class PacienteTable extends Vue {
       },
       (error) => console.log(error)
     );
+  }
+  private onClickPaginaDetalhar(idPaciente: number) {
+    this.$router.push({
+      name: "paciente-detalhar",
+      params: { id: idPaciente, model: "detalhar" },
+    });
   }
 }
 </script>
