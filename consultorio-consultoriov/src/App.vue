@@ -1,38 +1,46 @@
 <template>
-    <div class="columns">
-      <div class="column menu-top is-3">
-        Consultório - XYZ
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column is-3">
-        <nav class="princ">
-          <aside class="menu">
-            <p class="menu-label"> Agenda </p>
-            <ul class="menu-list">
-              <li><router-link to="/agendamento">Agendamento</router-link></li>
-              <li><router-link to="/historico">Históricos</router-link></li>
-            </ul>
-        
-            <p class="menu-label"> Pessoas </p>
-            <ul class="menu-list">
-              <li><a><router-link to="/paciente">Paciente</router-link></a></li>
-              <li><a>Médico</a></li>
-              <li><a>Secretaria</a></li>
-            </ul>
+  <div class="columns">
+    <div class="column menu-top is-3">Consultório - XYZ</div>
+  </div>
+  <div class="columns">
+    <div class="column is-3">
+      <nav class="princ">
+        <aside class="menu">
+          <p class="menu-label">Agenda</p>
+          <ul class="menu-list">
+            <li><router-link to="/agendamento">Agendamento</router-link></li>
+            <li><router-link to="/historico">Históricos</router-link></li>
+          </ul>
 
-            <p class="menu-label"> Administração </p>
-            <ul class="menu-list">
-              <li><a><router-link to="/especialidade">Especialidade</router-link></a></li>
-              <li><a><router-link to="/convenio">Convenio</router-link></a></li>
-            </ul>
-          </aside>
-        </nav>
-      </div>
-      <div class="column is-9 conteudo">
-        <router-view> </router-view>
-      </div>
+          <p class="menu-label">Pessoas</p>
+          <ul class="menu-list">
+            <li>
+              <a><router-link to="/paciente">Paciente</router-link></a>
+            </li>
+            <li><a>Médico</a></li>
+            <li>
+              <a><router-link to="/secretaria">Secretaria</router-link></a>
+            </li>
+          </ul>
+
+          <p class="menu-label">Administração</p>
+          <ul class="menu-list">
+            <li>
+              <a
+                ><router-link to="/especialidade">Especialidade</router-link></a
+              >
+            </li>
+            <li>
+              <a><router-link to="/convenio">Convenio</router-link></a>
+            </li>
+          </ul>
+        </aside>
+      </nav>
     </div>
+    <div class="column is-9 conteudo">
+      <router-view> </router-view>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
@@ -58,11 +66,10 @@ nav {
   }
 }
 
-.menu{
+.menu {
   background-color: #dddfe0;
 }
-.princ{
+.princ {
   background-color: #dddfe0;
-  
 }
 </style>

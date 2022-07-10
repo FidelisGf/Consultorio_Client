@@ -123,14 +123,16 @@
         v-model="secretaria.salario"
       />
     </div>
-
-    <div class="control">
-      <input
-        class="button is-primary is-link"
-        type="submit"
-        value="Cadastrar Secretaria"
-        @click="onClickCadastrar()"
-      />
+    <br />
+    <div class="columns">
+      <div class="column">
+        <button class="button is-info" @click="onClickEditar">Editar</button>
+      </div>
+      <div class="column">
+        <router-link to="/secretaria"
+          ><input class="button is-link" type="submit" value="Voltar"
+        /></router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -140,26 +142,52 @@ import { Options, Vue } from "vue-class-component";
 import { Notification } from "@/model/notification";
 import { Secretaria } from "@/model/secretaria-entity.model";
 import { SecretariaClient } from "@/client/secretaria.client";
-
-export default class SecretariaForm extends Vue {
+import { Prop } from "vue-property-decorator";
+export default class EditarSecretaria extends Vue {
   private secretariaClient!: SecretariaClient;
   private secretaria: Secretaria = new Secretaria();
   private notification: Notification = new Notification();
+  @Prop({ type: Number, required: false })
   private readonly id!: number;
+  @Prop({ type: String, required: false })
   private readonly model!: string;
 
   public mounted(): void {
     this.secretariaClient = new SecretariaClient();
+    this.getSecretaria();
+  }
+  private getSecretaria(): void {
+    this.secretariaClient.findById(this.id).then(
+      (sucess) => {
+        this.secretaria.id = sucess.id;
+        this.secretaria.nome = sucess.nome;
+        this.secretaria.telefone = sucess.telefone;
+        this.secretaria.celular = sucess.celular;
+        this.secretaria.nacionalidade = sucess.nacionalidade;
+        this.secretaria.cpf = sucess.cpf;
+        this.secretaria.rg = sucess.rg;
+        this.secretaria.email = sucess.email;
+        this.secretaria.login = sucess.login;
+        this.secretaria.senha = sucess.senha;
+        this.secretaria.sexo = sucess.sexo;
+        this.secretaria.pis = sucess.pis;
+        this.secretaria.dataContratacao = sucess.dataContratacao;
+        this.secretaria.salario = sucess.salario;
+        this.secretaria.ativo = sucess.ativo;
+        this.secretaria.cadastro = sucess.cadastro;
+        this.secretaria.atualizado = sucess.atualizado;
+      },
+      (error) => console.log(error)
+    );
   }
 
-  private onClickCadastrar() {
-    this.secretaria.ativo = true;
-    this.secretariaClient.cadastrar(this.secretaria).then(
-      (sucess) => {
+  private onClickEditar(): void {
+    this.secretariaClient.editar(this.secretaria).then(
+      (success) => {
         this.notification = this.notification.new(
           true,
-          "notification is-sucess",
-          "Secretaria Cadastrada com sucesso !!"
+          "notification is-success",
+          "Secretaria Editada com sucesso!!!"
         );
         this.onClickLimpar();
       },
@@ -167,7 +195,7 @@ export default class SecretariaForm extends Vue {
         this.notification = this.notification.new(
           true,
           "notification is-danger",
-          "Error" + error
+          "Error: " + error
         );
         this.onClickLimpar();
       }

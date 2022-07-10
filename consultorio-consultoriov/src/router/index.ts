@@ -118,6 +118,38 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "form" */ "../views/Detail/DetailPaciente.vue"
       ),
   },
+  {
+    path: "/secretaria",
+    name: "secretaria",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/SecretariaView.vue"),
+  },
+  {
+    path: "/secretaria/cadastrar",
+    name: "secretaria-cadastrar",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Cadastros/SecretariaCad.vue"
+      ),
+  },
+  {
+    path: "/secretaria/formulario/:model/:id",
+    name: "secretaria-editar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Editar/EditarSecretaria.vue"
+      ),
+  },
+  {
+    path: "/secretaria/formulario/:model/:id",
+    name: "secretaria-detalhar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(
+        /* webpackChunkName: "form" */ "../views/Detail/DetailSecretaria.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
