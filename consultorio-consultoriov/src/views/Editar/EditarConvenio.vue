@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title is-1">Cadastro de Convenio</h1>
+  <h1 class="title is-1">Editar Convenio</h1>
   <div class="field">
     <div class="control">
       <div class="columns" v-if="notification.ativo">
@@ -30,7 +30,7 @@
         class="button is-primary is-link"
         type="submit"
         value="Cadastrar Convenio"
-        @click="onClickCadastrar()"
+        @click="onClickEditar()"
       />
     </div>
   </div>
@@ -41,21 +41,39 @@ import { Convenio } from "@/model/convenio-entity.model";
 import { ConvenioClient } from "@/client/convenio.client";
 import { Notification } from "@/model/notification";
 import { EspecialidadeClient } from "@/client/especialdiade.client";
-export default class ConvenioForm extends Vue {
+import { Prop } from "vue-property-decorator";
+export default class EditarConvenio extends Vue {
   private convenio = new Convenio();
   private convenioClient = new ConvenioClient();
   private notification: Notification = new Notification();
+  @Prop({ type: Number, required: false })
+  private readonly id!: number;
+  @Prop({ type: String, default: false })
+  private readonly model!: string;
   public mounted(): void {
     this.convenioClient = new ConvenioClient();
+    this.getConvenio();
   }
-  private onClickCadastrar() {
-    this.convenio.ativo = true;
-    this.convenioClient.cadastrar(this.convenio).then(
+  private getConvenio(): void {
+    this.convenioClient.findById(this.id).then(
       (sucess) => {
+        this.convenio.id = sucess.id;
+        this.convenio.nome = sucess.nome;
+        this.convenio.valor = sucess.valor;
+        this.convenio.ativo = sucess.ativo;
+        this.convenio.cadastro = sucess.cadastro;
+        this.convenio.atualizado = sucess.atualizado;
+      },
+      (error) => console.log(error)
+    );
+  }
+  private onClickEditar(): void {
+    this.convenioClient.editar(this.convenio).then(
+      (success) => {
         this.notification = this.notification.new(
           true,
-          "notification is-sucess",
-          "Convenio Cadastrado com sucesso !!"
+          "notification is-success",
+          "Convenio Editado com sucesso!!!"
         );
         this.onClickLimpar();
       },
@@ -63,12 +81,13 @@ export default class ConvenioForm extends Vue {
         this.notification = this.notification.new(
           true,
           "notification is-danger",
-          "Error" + error
+          "Error: " + error
         );
         this.onClickLimpar();
       }
     );
   }
+
   private onClickLimpar() {
     this.convenio = new Convenio();
   }

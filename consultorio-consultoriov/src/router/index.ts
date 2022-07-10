@@ -69,6 +69,24 @@ const routes: Array<RouteRecordRaw> = [
       ),
   },
   {
+    path: "/convenio/formulario/:model/:id",
+    name: "convenio-detalhar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(
+        /* webpackChunkName: "form" */ "../views/Detail/DetailConvenio.vue"
+      ),
+  },
+  {
+    path: "/convenio/formulario/:model/:id",
+    name: "convenio-editar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(
+        /* webpackChunkName: "form" */ "../views/Editar/EditarConvenio.vue"
+      ),
+  },
+  {
     path: "/paciente",
     name: "paciente",
     component: () =>
@@ -85,9 +103,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/paciente/formulario/:model/:id",
     name: "paciente-editar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Editar/EditarPacienteView.vue"
+        /* webpackChunkName: "about" */ "../views/Editar/EditarPaciente.vue"
       ),
   },
   {
@@ -98,35 +117,6 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "form" */ "../views/Detail/DetailPaciente.vue"
       ),
-  },
-  {
-    path: "/medico",
-    name: "medico",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MedicoView.vue"),
-  },
-  {
-    path: "/medico/cadastrar",
-    name: "medico-cadastrar",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/Cadastros/MedicoCad.vue"
-      ),
-  },
-  {
-    path: "/medico/formulario/:model/:id",
-    name: "medico-editar",
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/Editar/MedicoEditarView.vue"
-      ),
-  },
-  {
-    path: "/medico/formulario/:model/:id",
-    name: "medico-detalhar",
-    props: (router) => ({ id: router.params.id, model: router.params.model }),
-    component: () =>
-      import(/* webpackChunkName: "form" */ "../views/Detail/DetailMedico.vue"),
   },
 ];
 

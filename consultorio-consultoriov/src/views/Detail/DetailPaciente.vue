@@ -6,7 +6,6 @@
           <p class="title is-4">Detalhes do Paciente</p>
         </div>
       </div>
-
       <div class="content">
         <i>Nome : {{ paciente.nome }}</i>
         <br />
@@ -22,6 +21,8 @@
         <i>E-mail: {{ paciente.email }}</i>
         <br /><br />
         <i>Login: {{ paciente.login }}</i>
+        <br /><br />
+        <i>Senha: {{ paciente.senha }}</i>
         <br /><br />
         <i>Sexo: {{ paciente.sexo }}</i>
         <br /><br />
@@ -101,7 +102,7 @@ export default class DetailPaciente extends Vue {
   }
   private onClickPaginaEditar(idPaciente: number) {
     this.$router.push({
-      name: "editarPaciente",
+      name: "paciente-editar",
       params: { id: idPaciente, model: "editar" },
     });
   }

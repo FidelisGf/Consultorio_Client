@@ -13,14 +13,12 @@
     <tbody>
       <tr class="has-text-left" v-for="item in pacienteList" :key="item.id">
         <th>
-          <router-link to="/paciente/detalhar"
-            ><button
-              class="button is-info"
-              @click="onClickPaginaDetalhar(item.id)"
-            >
-              Info
-            </button></router-link
+          <button
+            class="button is-info"
+            @click="onClickPaginaDetalhar(item.id)"
           >
+            Info
+          </button>
         </th>
         <th>{{ item.nome }}</th>
         <th>{{ item.cpf }}</th>

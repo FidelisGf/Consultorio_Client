@@ -2,7 +2,6 @@
   <div class="columns">
     <div class="column is-12 is-size-3">Lista de Pacientes</div>
   </div>
-
   <div class="columns">
     <div class="column">
       <router-link to="/paciente/cadastrar"

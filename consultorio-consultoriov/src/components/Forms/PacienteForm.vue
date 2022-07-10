@@ -1,5 +1,14 @@
 <template>
   <h1 class="title is-1">Cadastro de Paciente</h1>
+  <div class="columns" v-if="notification.ativo">
+    <div class="column is-12">
+      <div :class="notification.classe">
+        <button @click="onClickFecharNotificacao()" class="delete"></button>
+        {{ notification.mensagem }}
+      </div>
+    </div>
+  </div>
+
   <div class="field">
     <div class="control">
       <input
@@ -85,19 +94,15 @@
         </div>
       </div>
     </div>
-    <div class="control">
-      <input
-        class="input nCartao is-success"
-        type="text"
-        placeholder="Nº do Cartão"
-        v-model="paciente.numeroCartaoConvenio"
-      />
-    </div>
+
     <div class="field">
       <div class="control">
         <label class="label">Tipo Atendimento</label>
         <div class="select is-rounded is-primary">
-          <select aria-placeholder="sexo" v-model="paciente.tipoAtendimento">
+          <select
+            aria-placeholder="Tipo Atendimento"
+            v-model="paciente.tipoAtendimento"
+          >
             <option>particular</option>
             <option>convenio</option>
           </select>
@@ -106,12 +111,37 @@
     </div>
     <div class="control">
       <input
-        class="input convenio is-success"
-        type="number"
-        placeholder="Convenio"
-        v-model="paciente.convenio"
+        class="input"
+        type="text"
+        v-model="paciente.numeroCartaoConvenio"
+        placeholder="n° cartão convênio"
       />
     </div>
+    <div class="field">
+      <div class="control">
+        <label class="label">Convenio</label>
+        <input
+          class="input"
+          type="number"
+          v-model="convenio.id"
+          placeholder="Convenio"
+        />
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">Data Vencimento</label>
+        <div class="control">
+          <input
+            v-model="paciente.dataVencimento"
+            class="input"
+            type="datetime-local"
+            placeholder="data vencimento"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="control">
       <input
         class="button is-primary is-link"
@@ -128,24 +158,18 @@ import { Paciente } from "@/model/paciente-entity.model";
 import { Notification } from "@/model/notification";
 import { PacienteClient } from "@/client/paciente.client";
 import { Convenio } from "@/model/convenio-entity.model";
-import { ConvenioClient } from "@/client/convenio.client";
-import { PageRequest } from "@/model/page/page-request";
-import { PageResponse } from "@/model/page/page-response";
 export default class PacienteForm extends Vue {
-  private pageRequest: PageRequest = new PageRequest();
-  private pageResponse: PageResponse<Convenio> = new PageResponse();
   private pacienteClient!: PacienteClient;
   private paciente: Paciente = new Paciente();
   private notification: Notification = new Notification();
-  private convenioList: Convenio[] = [];
-  private convenioClient!: ConvenioClient;
+  private convenio: Convenio = new Convenio();
   private readonly id!: number;
   private readonly model!: string;
 
   public mounted(): void {
     this.pacienteClient = new PacienteClient();
-    this.convenioClient = new ConvenioClient();
-    this.listarConvenio();
+    this.paciente.ativo = true;
+    this.paciente.convenio = this.convenio;
   }
 
   private onClickCadastrar() {
@@ -166,15 +190,6 @@ export default class PacienteForm extends Vue {
         );
         this.onClickLimpar();
       }
-    );
-  }
-  private listarConvenio(): void {
-    this.convenioClient.findByFiltrosPaginado(this.pageRequest).then(
-      (success) => {
-        this.pageResponse = success;
-        this.convenioList = this.pageResponse.content;
-      },
-      (error) => console.log(error)
     );
   }
 
