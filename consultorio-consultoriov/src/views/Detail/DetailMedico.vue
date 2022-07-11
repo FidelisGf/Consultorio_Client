@@ -3,10 +3,9 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">Detalhes do medico</p>
+          <p class="title is-4">Detalhes do Medico</p>
         </div>
       </div>
-
       <div class="content">
         <i>Nome : {{ medico.nome }}</i>
         <br />
@@ -23,15 +22,22 @@
         <br /><br />
         <i>Login: {{ medico.login }}</i>
         <br /><br />
+        <i>Senha: {{ medico.senha }}</i>
+        <br /><br />
         <i>Sexo: {{ medico.sexo }}</i>
         <br /><br />
-        <i>Tipo de Atendimento: {{ medico.consultorio }}</i>
+        <i>Consultorio : {{ medico.consultorio }}</i>
         <br /><br />
-        <i>N° Cartão Convênio: {{ medico.especialidadeo }}</i>
+        <i>Valor da Consulta: {{ medico.valorConsulta }}</i>
         <br /><br />
-        <i>Data de Vencimento: {{ medico.valorConsulta }}</i>
+        <i>CRM : {{ medico.crm }}</i>
         <br /><br />
-        <i>Convênio: {{ medico.porcentagemParticipacao }}</i>
+        <i
+          >Porcentagem de Participação :
+          {{ medico.porcentagemParticipacao }} %</i
+        >
+        <br /><br />
+        <i>Cadastrado em : {{ medico.cadastro }}</i>
         <br /><br />
         <div class="columns">
           <div class="column">
@@ -55,16 +61,19 @@
 
 <script lang="ts">
 import { Vue } from "vue-class-component";
+import { PageRequest } from "@/model/page/page-request";
+import { PageResponse } from "@/model/page/page-response";
 import { Prop } from "vue-property-decorator";
 import { MedicoClient } from "@/client/medico.client";
 import { Medico } from "@/model/medico-entity.model";
-export default class MedicoFormDetalhar extends Vue {
+export default class DetailMedico extends Vue {
   private medicoClient!: MedicoClient;
   private medico: Medico = new Medico();
   @Prop({ type: Number, required: false })
   private readonly id!: number;
   @Prop({ type: String, default: false })
   private readonly model!: string;
+
   public mounted(): void {
     this.medicoClient = new MedicoClient();
     this.getMedico();
@@ -81,13 +90,12 @@ export default class MedicoFormDetalhar extends Vue {
         this.medico.rg = sucess.rg;
         this.medico.email = sucess.email;
         this.medico.login = sucess.login;
-        this.medico.senha = sucess.senha;
-        this.medico.sexo = sucess.sexo;
         this.medico.crm = sucess.crm;
         this.medico.consultorio = sucess.consultorio;
-        this.medico.especialidade = sucess.especialidade;
         this.medico.valorConsulta = sucess.valorConsulta;
         this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao;
+        this.medico.senha = sucess.senha;
+        this.medico.sexo = sucess.sexo;
         this.medico.ativo = sucess.ativo;
         this.medico.cadastro = sucess.cadastro;
         this.medico.atualizado = sucess.atualizado;
@@ -97,7 +105,7 @@ export default class MedicoFormDetalhar extends Vue {
   }
   private onClickPaginaEditar(idMedico: number) {
     this.$router.push({
-      name: "editarMedico",
+      name: "medico-editar",
       params: { id: idMedico, model: "editar" },
     });
   }

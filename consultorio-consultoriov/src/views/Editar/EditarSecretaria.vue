@@ -1,5 +1,5 @@
 <template>
-  <h1 class="title is-1">Cadastro de Secretária</h1>
+  <h1 class="title is-1">Editar Secretaria</h1>
   <div class="columns" v-if="notification.ativo">
     <div class="column is-12">
       <div :class="notification.classe">

@@ -150,6 +150,36 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "form" */ "../views/Detail/DetailSecretaria.vue"
       ),
   },
+  {
+    path: "/medico",
+    name: "medico",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MedicoView.vue"),
+  },
+  {
+    path: "/medico/cadastrar",
+    name: "medico-cadastrar",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Cadastros/MedicoCad.vue"
+      ),
+  },
+  {
+    path: "/medico/formulario/:model/:id",
+    name: "medico-detalhar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(/* webpackChunkName: "form" */ "../views/Detail/DetailMedico.vue"),
+  },
+  {
+    path: "/medico/formulario/:model/:id",
+    name: "medico-editar",
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Editar/EditarMedico.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

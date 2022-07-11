@@ -14,7 +14,7 @@
       <tr class="has-text-left" v-for="item in secretariaList" :key="item.id">
         <th>
           <button
-            class="button is-info"
+            class="button is-info is-rounded"
             @click="onClickPaginaDetalhar(item.id)"
           >
             Info

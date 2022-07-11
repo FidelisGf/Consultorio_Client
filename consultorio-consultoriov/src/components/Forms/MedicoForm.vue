@@ -1,6 +1,14 @@
 <template>
   <h1 class="title is-1">Cadastro de medico</h1>
   <div class="field">
+    <div class="columns" v-if="notification.ativo">
+      <div class="column is-12">
+        <div :class="notification.classe">
+          <button @click="onClickFecharNotificacao()" class="delete"></button>
+          {{ notification.mensagem }}
+        </div>
+      </div>
+    </div>
     <div class="control">
       <input
         class="input nome is-success"
@@ -85,75 +93,59 @@
         </div>
       </div>
     </div>
-    <div class="column is-4 is-size-4">
-      <div class="field">
-        <label class="label">CRM</label>
-        <div class="control">
-          <input
-            class="input"
-            type="number"
-            v-model="medico.crm"
-            placeholder="crm"
-          />
-        </div>
+
+    <div class="field">
+      <div class="control">
+        <input
+          class="input"
+          type="number"
+          v-model="medico.crm"
+          placeholder="crm"
+        />
       </div>
     </div>
 
-    <div class="column is-4 is-size-4">
-      <div class="field">
-        <label class="label">Consultório</label>
-        <div class="control">
-          <input
-            class="input"
-            type="text"
-            v-model="medico.consultorio"
-            placeholder="consultorio"
-          />
-        </div>
+    <div class="field">
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          v-model="medico.consultorio"
+          placeholder="consultorio"
+        />
       </div>
     </div>
   </div>
 
-  <div class="divisoes info-medico">
-    <div class="column is-4 is-size-4">
-      <div class="field">
-        <label class="label">Porcentagem de Participação</label>
-        <div class="control">
-          <input
-            class="input"
-            type="number"
-            v-model="medico.porcentagemParticipacao"
-            placeholder="% de participação"
-          />
-        </div>
+  <div class="field">
+    <div class="control">
+      <input
+        class="input"
+        type="number"
+        v-model="medico.porcentagemParticipacao"
+        placeholder="% de participação"
+      />
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <input
+          class="input"
+          type="number"
+          v-model="medico.valorConsulta"
+          placeholder="valor consulta"
+        />
       </div>
     </div>
 
-    <div class="column is-4 is-size-4">
-      <div class="field">
-        <label class="label">Valor Consulta</label>
-        <div class="control">
-          <input
-            class="input"
-            type="number"
-            v-model="medico.valorConsulta"
-            placeholder="valor consulta"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="column is-4 is-size-4">
-      <div class="field">
-        <label class="label">ID da Especialidade</label>
-        <div class="control">
-          <input
-            class="input"
-            type="number"
-            v-model="medico.especialidade"
-            placeholder="especialidade"
-          />
-        </div>
+    <div class="field">
+      <div class="control">
+        <input
+          class="input"
+          type="number"
+          v-model="especialidade.id"
+          placeholder="especialidade"
+        />
       </div>
     </div>
   </div>
@@ -175,11 +167,13 @@ import { Convenio } from "@/model/convenio-entity.model";
 import { ConvenioClient } from "@/client/convenio.client";
 import { PageRequest } from "@/model/page/page-request";
 import { PageResponse } from "@/model/page/page-response";
+import { Especialidade } from "@/model/especialidade.entity.model";
 export default class MedicoForm extends Vue {
   private pageRequest: PageRequest = new PageRequest();
   private pageResponse: PageResponse<Convenio> = new PageResponse();
   private medicoClient!: MedicoClient;
   private medico: Medico = new Medico();
+  private especialidade: Especialidade = new Especialidade();
   private notification: Notification = new Notification();
 
   private readonly id!: number;
@@ -190,12 +184,14 @@ export default class MedicoForm extends Vue {
   }
 
   private onClickCadastrar() {
+    this.medico.especialidade = this.especialidade;
+    this.medico.ativo = true;
     this.medicoClient.cadastrar(this.medico).then(
       (sucess) => {
         this.notification = this.notification.new(
           true,
           "notification is-sucess",
-          "medico Cadastrado com sucesso !!"
+          "Medico Cadastrado com sucesso !!"
         );
         this.onClickLimpar();
       },

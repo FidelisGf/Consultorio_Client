@@ -17,7 +17,7 @@
             <li>
               <a><router-link to="/paciente">Paciente</router-link></a>
             </li>
-            <li><a>Médico</a></li>
+            <a><router-link to="/medico">Medico</router-link></a>
             <li>
               <a><router-link to="/secretaria">Secretaria</router-link></a>
             </li>
