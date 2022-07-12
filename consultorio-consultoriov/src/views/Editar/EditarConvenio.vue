@@ -10,6 +10,14 @@
           </div>
         </div>
       </div>
+      <div class="columns">
+        <div class="column is-12 is-size-3">
+          <label class="label">
+            <input v-model="convenio.ativo" checked type="checkbox" />
+            Ativar Convenio
+          </label>
+        </div>
+      </div>
       <input
         class="input nome"
         type="text"
@@ -29,9 +37,14 @@
       <input
         class="button is-primary is-link"
         type="submit"
-        value="Cadastrar Convenio"
+        value="Editar Convenio"
         @click="onClickEditar()"
       />
+    </div>
+    <div class="column">
+      <router-link to="/convenio"
+        ><input class="button is-link" type="submit" value="Voltar"
+      /></router-link>
     </div>
   </div>
 </template>

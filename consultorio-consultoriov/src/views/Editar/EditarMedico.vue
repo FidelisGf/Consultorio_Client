@@ -9,6 +9,14 @@
         </div>
       </div>
     </div>
+    <div class="columns">
+      <div class="column is-12 is-size-3">
+        <label class="label">
+          <input v-model="medico.ativo" checked type="checkbox" />
+          Ativar Medico
+        </label>
+      </div>
+    </div>
     <div class="control">
       <input
         class="input nome is-success"
@@ -156,6 +164,11 @@
       value="Editar medico"
       @click="onClickEditar()"
     />
+  </div>
+  <div class="column">
+    <router-link to="/medico"
+      ><input class="button is-link" type="submit" value="Voltar"
+    /></router-link>
   </div>
 </template>
 <script lang="ts">

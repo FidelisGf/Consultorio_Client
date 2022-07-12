@@ -27,11 +27,16 @@
     </div>
     <div class="control">
       <input
-        class="button is-primary is-link"
+        class="button is-primary is-sucess"
         type="submit"
         value="Cadastrar Convenio"
         @click="onClickCadastrar()"
       />
+    </div>
+    <div class="control">
+      <router-link to="/convenio"
+        ><input class="button is-link" type="submit" value="Voltar"
+      /></router-link>
     </div>
   </div>
 </template>

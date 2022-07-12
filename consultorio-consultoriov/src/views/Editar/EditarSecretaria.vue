@@ -8,7 +8,14 @@
       </div>
     </div>
   </div>
-
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      <label class="label">
+        <input v-model="secretaria.ativo" checked type="checkbox" />
+        Ativar Secretaria
+      </label>
+    </div>
+  </div>
   <div class="field">
     <div class="control">
       <input

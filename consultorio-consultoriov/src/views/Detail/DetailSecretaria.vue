@@ -7,6 +7,9 @@
         </div>
       </div>
       <div class="content">
+        <i v-if="secretaria.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!secretaria.ativo" style="color: red"> Inativo</i>
+        <br /><br />
         <i>Nome : {{ secretaria.nome }}</i>
         <br />
         <br />
@@ -41,6 +44,14 @@
               @click="onClickPaginaEditar(secretaria.id)"
             >
               Editar
+            </button>
+          </div>
+          <div class="column">
+            <button
+              @click="desativarSecretaria(secretaria)"
+              class="button is-danger"
+            >
+              Desativar
             </button>
           </div>
           <div class="column">
@@ -96,6 +107,27 @@ export default class DetailSecretaria extends Vue {
       },
       (error) => console.log(error)
     );
+  }
+  private desativarSecretaria(secretariaDesativar: Secretaria) {
+    secretariaDesativar.id = this.secretaria.id;
+    secretariaDesativar.nome = this.secretaria.nome;
+    secretariaDesativar.telefone = this.secretaria.telefone;
+    secretariaDesativar.celular = this.secretaria.celular;
+    secretariaDesativar.nacionalidade = this.secretaria.nacionalidade;
+    secretariaDesativar.cpf = this.secretaria.cpf;
+    secretariaDesativar.rg = this.secretaria.rg;
+    secretariaDesativar.email = this.secretaria.email;
+    secretariaDesativar.login = this.secretaria.login;
+    secretariaDesativar.pis = this.secretaria.pis;
+    secretariaDesativar.dataContratacao = this.secretaria.dataContratacao;
+    secretariaDesativar.salario = this.secretaria.salario;
+    secretariaDesativar.senha = this.secretaria.senha;
+    secretariaDesativar.sexo = this.secretaria.sexo;
+    secretariaDesativar.ativo = false;
+    secretariaDesativar.cadastro = this.secretaria.cadastro;
+    secretariaDesativar.atualizado = this.secretaria.atualizado;
+    this.secretariaClient.editar(secretariaDesativar);
+    this.$router.push({ name: "paciente" });
   }
   private onClickPaginaEditar(idSecretaria: number) {
     this.$router.push({

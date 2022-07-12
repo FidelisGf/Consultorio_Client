@@ -7,6 +7,9 @@
         </div>
       </div>
       <div class="content">
+        <i v-if="paciente.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!paciente.ativo" style="color: red"> Inativo</i>
+        <br /><br />
         <i>Nome : {{ paciente.nome }}</i>
         <br />
         <br />
@@ -43,6 +46,14 @@
               @click="onClickPaginaEditar(paciente.id)"
             >
               Editar
+            </button>
+          </div>
+          <div class="column">
+            <button
+              @click="desativarPaciente(paciente)"
+              class="button is-danger"
+            >
+              Desativar
             </button>
           </div>
           <div class="column">
@@ -99,6 +110,28 @@ export default class DetailPaciente extends Vue {
       },
       (error) => console.log(error)
     );
+  }
+  private desativarPaciente(pacienteDesativar: Paciente) {
+    pacienteDesativar.id = this.paciente.id;
+    pacienteDesativar.nome = this.paciente.nome;
+    pacienteDesativar.telefone = this.paciente.telefone;
+    pacienteDesativar.celular = this.paciente.celular;
+    pacienteDesativar.nacionalidade = this.paciente.nacionalidade;
+    pacienteDesativar.cpf = this.paciente.cpf;
+    pacienteDesativar.rg = this.paciente.rg;
+    pacienteDesativar.email = this.paciente.email;
+    pacienteDesativar.login = this.paciente.login;
+    pacienteDesativar.numeroCartaoConvenio = this.paciente.numeroCartaoConvenio;
+    pacienteDesativar.dataVencimento = this.paciente.dataVencimento;
+    pacienteDesativar.tipoAtendimento = this.paciente.tipoAtendimento;
+    pacienteDesativar.convenio = this.paciente.convenio;
+    pacienteDesativar.senha = this.paciente.senha;
+    pacienteDesativar.sexo = this.paciente.sexo;
+    pacienteDesativar.ativo = false;
+    pacienteDesativar.cadastro = this.paciente.cadastro;
+    pacienteDesativar.atualizado = this.paciente.atualizado;
+    this.pacienteClient.editar(pacienteDesativar);
+    this.$router.push({ name: "paciente" });
   }
   private onClickPaginaEditar(idPaciente: number) {
     this.$router.push({

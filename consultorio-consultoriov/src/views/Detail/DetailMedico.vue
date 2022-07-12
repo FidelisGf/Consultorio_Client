@@ -7,6 +7,9 @@
         </div>
       </div>
       <div class="content">
+        <i v-if="medico.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!medico.ativo" style="color: red"> Inativo</i>
+        <br /><br />
         <i>Nome : {{ medico.nome }}</i>
         <br />
         <br />
@@ -46,6 +49,11 @@
               @click="onClickPaginaEditar(medico.id)"
             >
               Editar
+            </button>
+          </div>
+          <div class="column">
+            <button @click="desativarMedico(medico)" class="button is-danger">
+              Desativar
             </button>
           </div>
           <div class="column">
@@ -108,6 +116,29 @@ export default class DetailMedico extends Vue {
       name: "medico-editar",
       params: { id: idMedico, model: "editar" },
     });
+  }
+  private desativarMedico(medicoDesativar: Medico) {
+    medicoDesativar.id = this.medico.id;
+    medicoDesativar.nome = this.medico.nome;
+    medicoDesativar.telefone = this.medico.telefone;
+    medicoDesativar.celular = this.medico.celular;
+    medicoDesativar.nacionalidade = this.medico.nacionalidade;
+    medicoDesativar.cpf = this.medico.cpf;
+    medicoDesativar.rg = this.medico.rg;
+    medicoDesativar.email = this.medico.email;
+    medicoDesativar.login = this.medico.login;
+    medicoDesativar.crm = this.medico.crm;
+    medicoDesativar.consultorio = this.medico.consultorio;
+    medicoDesativar.valorConsulta = this.medico.valorConsulta;
+    medicoDesativar.porcentagemParticipacao =
+      this.medico.porcentagemParticipacao;
+    medicoDesativar.senha = this.medico.senha;
+    medicoDesativar.sexo = this.medico.sexo;
+    medicoDesativar.ativo = false;
+    medicoDesativar.cadastro = this.medico.cadastro;
+    medicoDesativar.atualizado = this.medico.atualizado;
+    this.medicoClient.editar(medicoDesativar);
+    this.$router.push({ name: "medico" });
   }
 }
 </script>

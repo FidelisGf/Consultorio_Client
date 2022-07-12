@@ -144,11 +144,16 @@
 
     <div class="control">
       <input
-        class="button is-primary is-link"
+        class="button is-primary is-sucess"
         type="submit"
         value="Cadastrar Paciente"
         @click="onClickCadastrar()"
       />
+    </div>
+    <div class="control">
+      <router-link to="/paciente"
+        ><input class="button is-link" type="submit" value="Voltar"
+      /></router-link>
     </div>
   </div>
 </template>

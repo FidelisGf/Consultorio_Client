@@ -8,7 +8,14 @@
       </div>
     </div>
   </div>
-
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      <label class="label">
+        <input v-model="paciente.ativo" checked type="checkbox" />
+        Ativar Paciente
+      </label>
+    </div>
+  </div>
   <div class="field">
     <div class="control">
       <input
@@ -133,11 +140,16 @@
 
     <div class="control">
       <input
-        class="button is-primary is-link"
+        class="button is-primary is-sucess"
         type="submit"
         value="Editar Paciente"
         @click="onClickEditar()"
       />
+    </div>
+    <div class="control">
+      <router-link to="/paciente"
+        ><input class="button is-link" type="submit" value="Voltar"
+      /></router-link>
     </div>
   </div>
 </template>
