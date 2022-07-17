@@ -57,6 +57,7 @@ export default class EspecialidaeForm extends Vue {
 
   public mounted(): void {
     this.especialidadeClient = new EspecialidadeClient();
+    this.especialidade.ativo = true;
     console.log(this.id);
     console.log(this.model);
   }

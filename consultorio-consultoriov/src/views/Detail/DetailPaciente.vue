@@ -35,7 +35,9 @@
         <br /><br />
         <i>Data de Vencimento: {{ paciente.dataVencimento }}</i>
         <br /><br />
-        <i>Convênio: {{ paciente.convenio }}</i>
+        <i v-if="paciente.convenio != null">
+          Convênio: {{ paciente.convenio.nome }}</i
+        >
         <br /><br />
         <i>Cadastrado em : {{ paciente.cadastro }}</i>
         <br /><br />

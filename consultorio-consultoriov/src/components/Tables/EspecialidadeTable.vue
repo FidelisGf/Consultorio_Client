@@ -59,7 +59,7 @@ export default class EspecialidadeTable extends Vue {
   private onClickPaginaDetalhar(idEspecialidade: number) {
     this.$router.push({
       name: "especialidade-detalhar",
-      params: { id: idEspecialidade, model: "foda" },
+      params: { id: idEspecialidade, model: "detalhar" },
     });
   }
 }

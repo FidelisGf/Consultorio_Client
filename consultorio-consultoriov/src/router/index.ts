@@ -180,6 +180,20 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "about" */ "../views/Editar/EditarMedico.vue"
       ),
   },
+  {
+    path: "/agenda",
+    name: "agenda",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AgendaView.vue"),
+  },
+  {
+    path: "/agenda/cadastrar",
+    name: "agenda-cadastrar",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Cadastros/AgendaCad.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

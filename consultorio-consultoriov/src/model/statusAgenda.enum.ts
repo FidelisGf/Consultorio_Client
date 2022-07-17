@@ -1,8 +1,8 @@
-export enum StatusAgenda{
-    pendente = 'Pendente',
-    aprovado = 'Aprovado',
-    rejeitado = 'Rejeitado',
-    cancelado = 'Cancelado',
-    compareceu = 'Compareceu',
-    nao_compareceu = 'Não compareceu'
+export enum StatusAgenda {
+  pendente = "pendente",
+  aprovado = "aprovado",
+  rejeitado = "rejeitado",
+  cancelado = "cancelado",
+  compareceu = "compareceu",
+  nao_compareceu = "nao_compareceu",
 }

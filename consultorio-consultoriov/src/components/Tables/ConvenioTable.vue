@@ -54,7 +54,7 @@ export default class ConvenioTable extends Vue {
   private onClickPaginaDetalhar(idConvenio: number) {
     this.$router.push({
       name: "convenio-detalhar",
-      params: { id: idConvenio, model: "foda" },
+      params: { id: idConvenio, model: "detalhar" },
     });
   }
 }

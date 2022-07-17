@@ -10,6 +10,8 @@
         <i v-if="medico.ativo" style="color: limegreen"> Ativo</i>
         <i v-if="!medico.ativo" style="color: red"> Inativo</i>
         <br /><br />
+        <i>Medico : {{ medico.especialidade.nome }}</i>
+        <br /><br />
         <i>Nome : {{ medico.nome }}</i>
         <br />
         <br />
@@ -101,6 +103,7 @@ export default class DetailMedico extends Vue {
         this.medico.crm = sucess.crm;
         this.medico.consultorio = sucess.consultorio;
         this.medico.valorConsulta = sucess.valorConsulta;
+        this.medico.especialidade = sucess.especialidade;
         this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao;
         this.medico.senha = sucess.senha;
         this.medico.sexo = sucess.sexo;

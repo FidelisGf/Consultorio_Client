@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column menu-top is-3">Consultório - XYZ</div>
+    <div class="column menu-top is-3">Consultório - XZ</div>
   </div>
   <div class="columns">
     <div class="column is-3">
@@ -8,7 +8,7 @@
         <aside class="menu">
           <p class="menu-label">Agenda</p>
           <ul class="menu-list">
-            <li><router-link to="/agendamento">Agendamento</router-link></li>
+            <li><router-link to="/agenda">Agendamento</router-link></li>
             <li><router-link to="/historico">Históricos</router-link></li>
           </ul>
 
